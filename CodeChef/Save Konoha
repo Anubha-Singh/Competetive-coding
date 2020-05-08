@@ -1,0 +1,57 @@
+Constraints
+1≤T≤10
+1≤N≤105
+1≤Z≤108
+1≤Ai≤104
+Sample Input:
+1
+5 25
+7 13 8 17 3
+
+Sample Output:
+2
+
+//My Solution
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int T;
+    cin>>T;
+    while(T--)
+    {
+        int n,z;
+        cin>>n>>z;
+        int a;
+        priority_queue <int, vector<int> > g;
+        for(int i=0;i<n;i++)
+            {
+                cin>>a;
+                g.push(a);
+            }
+        int count1=0;
+    
+    
+            while(g.top()>0 && z>0)
+            {
+                z-=g.top();
+            
+                g.push(floor(g.top()/2));
+                g.pop();
+                count1++;
+            }
+            
+            if(z>0)
+            {
+               cout<<"Evacuate"<<endl;
+
+            }
+            else
+             cout<<count1<<endl;
+
+
+    }
+    return 0;
+}
