@@ -1,0 +1,70 @@
+Constraints
+1≤N,M≤2⋅105
+|Ai|≤109 for each valid i
+|Bi|≤109 for each valid i
+A1,A2,…,AN are pairwise distinct
+B1,B2,…,BM are pairwise distinct
+Subtasks
+Subtask #1 (25 points): 1≤N,M≤103
+Subtask #2 (75 points): original constraints
+
+Example Input
+3 2
+10 1 100
+4 3
+Example Output
+2 1
+0 0
+1 0
+0 1
+Explanation
+The chosen pairs and their sums are:
+
+A3+B2=100+3=103
+A1+B1=10+4=14
+A2+B1=1+4=5
+A1+B2=10+3=13
+Since all sums are distinct, this is a correct output.
+
+
+//My Solution
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+static void compute_distinct_pairs(const std :: vector <int> &, const int, const std :: vector <int> &, const int);
+
+int main(void) {
+    
+    int n, m;
+    std :: cin >> n >> m;
+    std :: vector <int> sequence1(n);
+    std :: vector <int> sequence2(m);
+    for(int i = 0; i < n; ++i) {
+        std :: cin >> sequence1[i];
+    }
+    for(int i = 0; i < m; ++i) {
+        std :: cin >> sequence2[i];
+    }
+    compute_distinct_pairs(sequence1, n, sequence2, m);
+    return 0;
+}
+
+static void compute_distinct_pairs(const std :: vector <int> & sequence1, const int n, const std :: vector <int> & sequence2, const int m) {
+    int min_index_s1 = std :: min_element(sequence1.begin(), sequence1.end()) - sequence1.begin();
+    int max_index_s2 = std :: max_element(sequence2.begin(), sequence2.end()) - sequence2.begin();
+    for(int i = 0; i < m; ++i) {
+        std :: cout << min_index_s1 << " " << i << std :: endl;
+    }
+    for(int i = 0; i < n; ++i) {
+        if(i == min_index_s1) {
+            continue;
+        }
+        std :: cout << i << " " << max_index_s2 << std :: endl;
+    }
+}
