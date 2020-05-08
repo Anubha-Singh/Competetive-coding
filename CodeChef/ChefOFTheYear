@@ -1,0 +1,99 @@
+Constraints
+1 ≤ N ≤ 10000 (104)
+1 ≤ M ≤ 100000 (105)
+Each string in the input contains only letters of English alphabets (uppercase or lowercase)
+Each string in the input has length not exceeding 10
+All chef names will be distinct
+Subject of each email will coincide with the name of one of the chefs
+Example 1
+Input:
+1 3
+Leibniz Germany
+Leibniz
+Leibniz
+Leibniz
+
+Output:
+Germany
+Leibniz
+Example 2
+Input:
+4 5
+Ramanujan India
+Torricelli Italy
+Gauss Germany
+Lagrange Italy
+Ramanujan
+Torricelli
+Torricelli
+Ramanujan
+Lagrange
+
+Output:
+Italy
+Ramanujan
+Example 3
+Input:
+2 2
+Newton England
+Euclid Greece
+Newton
+Euclid
+
+Output:
+England
+Euclid
+
+//My Solution
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n,em;
+    cin>>n>>em;
+ map<string,string> mp;//returns the country associated with each chef
+map<string,int>m;
+ map<string,int>s;
+    string c,ch,v;
+    for(int i=0;i<n;i++)
+    {
+
+        cin>>ch>>c;
+        mp[ch]=c;
+
+    }
+    for(int i=0;i<em;i++)
+    {
+        cin>>v;
+        m[v]++;//counts the number of chef
+        s[mp[v]]++;//count maxEmailCountry
+    }
+    int maxn=0;
+    string chefOfYear;
+
+    for(auto it=m.begin();it!=m.end();++it)
+    {
+        if(it->second>maxn)
+       { maxn=it->second;
+       chefOfYear=it->first;
+       }
+       
+       
+    }
+    int maxm=0;
+    string country;
+    for(auto it=s.begin();it!=s.end();++it)
+    {
+        if(it->second>maxm)
+        {
+            maxm=it->second;
+            country=it->first;
+        }
+        }
+        cout<<country<<"\n"<<chefOfYear<<endl;
+    
+    return 0;
+}
